@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Table Example</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-5">
+  <h2 class="text-center mb-4">商品詳細</h2>
+  <!-- 単一データを表現する表 -->
+  <table class="table table-bordered">
+    <tbody>
+      <tr>
+        <th scope="row">タイトル</th>
+        <td>商品A</td>
+      </tr>
+      <tr>
+        <th scope="row">説明</th>
+        <td>これは商品Aの詳細な説明です。</td>
+      </tr>
+      <tr>
+        <th scope="row">価格</th>
+        <td>¥1,000</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="container mt-5">
+  <h2 class="text-center mb-4">商品一覧</h2>
+  <!-- 明細を表現する表（一覧形式） -->
+  <table class="table table-bordered" id="productTable">
+    <thead>
+      <tr>
+        <th scope="col">商品</th>
+        <th scope="col">価格</th>
+        <th scope="col">在庫</th>
+        <th scope="col">詳細</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>商品A</td>
+        <td>¥1,000</td>
+        <td>10</td>
+        <td><button class="btn btn-info" data-toggle="modal" data-target="#productModal">詳細</button></td>
+      </tr>
+      <tr>
+        <td>商品B</td>
+        <td>¥800</td>
+        <td>15</td>
+        <td><button class="btn btn-info" data-toggle="modal" data-target="#productModal">詳細</button></td>
+      </tr>
+      <tr>
+        <td>商品C</td>
+        <td>¥1,500</td>
+        <td>5</td>
+        <td><button class="btn btn-info" data-toggle="modal" data-target="#productModal">詳細</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- 追加ボタン -->
+  <button class="btn btn-primary" onclick="addRow()">追加</button>
+</div>
+
+<!-- モーダル -->
+<div class="modal" id="productModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- モーダルヘッダ -->
+      <div class="modal-header">
+        <h4 class="modal-title">商品詳細</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- モーダルボディ -->
+      <div class="modal-body">
+        <p>商品Aの詳細な情報がここに表示されます。</p>
+      </div>
+
+      <!-- モーダルフッタ -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">閉じる</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap JavaScriptおよびjQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+  function addRow() {
+    var table = document.getElementById("productTable").getElementsByTagName('tbody')[0];
+    var newRow = table.insertRow(table.rows.length);
+
+    // 新しいセルを作成
+    var cell1 = newRow.insertCell(0);
+    var cell2 = newRow.insertCell(1);
+    var cell3 = newRow.insertCell(2);
+    var cell4 = newRow.insertCell(3);
+
+    // 各セルにテキストボックスを追加
+    cell1.innerHTML = '<input type="text" class="form-control">';
+    cell2.innerHTML = '<input type="text" class="form-control">';
+    cell3.innerHTML = '<input type="text" class="form-control">';
+    cell4.innerHTML = '<button class="btn btn-info" data-toggle="modal" data-target="#productModal">詳細</button>';
+  }
+</script>
+
+</body>
+</html>
